@@ -2,13 +2,26 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 
+// Load environment variables FIRST before any other imports
+// dotenv.config() looks for .env in the current working directory
+// Load .env.local with override to take precedence
+dotenv.config(); // Loads .env
+dotenv.config({ path: '.env.local', override: true }); // Overrides with .env.local if exists
+
+// Verify API key is loaded (helpful for debugging)
+if (!process.env.GEMINI_API_KEY && !process.env.API_KEY) {
+  console.error('⚠️  WARNING: GEMINI_API_KEY not found in environment variables!');
+  console.error('   Please create a .env.local file in the project root with:');
+  console.error('   GEMINI_API_KEY=your_actual_api_key_here');
+  console.error('   Current working directory:', process.cwd());
+} else {
+  console.log('✅ GEMINI_API_KEY loaded successfully');
+}
+
 import { chatInstructorHandler } from './app/api/chatInstructor';
 import { generateTopicHandler } from './app/api/generateTopic';
 import { generateQuizHandler } from './app/api/generateQuiz';
 import { searchHandler } from './app/api/search';
-
-dotenv.config({ path: '.env.local' });
-dotenv.config({ path: '.env' });
 
 const app = express();
 const port = process.env.PORT || 8788;

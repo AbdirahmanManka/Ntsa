@@ -8,12 +8,9 @@ import {
   TopicContentResponse,
 } from '../types';
 
-const API_BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8788';
-
+// Use relative paths for Vercel deployment - works both locally (via proxy) and in production
 const fetchJson = async <T>(path: string, options?: RequestInit): Promise<T> => {
-  const url = path.startsWith('http') ? path : `${API_BASE}${path}`;
-
-  const response = await fetch(url, {
+  const response = await fetch(path, {
     headers: {
       'Content-Type': 'application/json',
     },
