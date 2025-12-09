@@ -26,12 +26,12 @@ const App: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const generated = await generateTopicContent(topic.title);
-      setContent(generated);
+    const generated = await generateTopicContent(topic.title);
+    setContent(generated);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unable to load topic');
     } finally {
-      setLoading(false);
+    setLoading(false);
     }
   };
 
@@ -42,12 +42,12 @@ const App: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await searchTopics(searchQuery);
-      setContent(result);
+    const result = await searchTopics(searchQuery);
+    setContent(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Search unavailable');
     } finally {
-      setLoading(false);
+    setLoading(false);
     }
   };
 
@@ -64,13 +64,13 @@ const App: React.FC = () => {
     setError(null);
 
     try {
-      const questions = await generateQuizQuestions(topicName, difficulty);
-      setQuizQuestions(questions);
-      setActiveTab(AppState.QUIZ);
+    const questions = await generateQuizQuestions(topicName, difficulty);
+    setQuizQuestions(questions);
+    setActiveTab(AppState.QUIZ);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Quiz generation failed');
     } finally {
-      setLoading(false);
+    setLoading(false);
     }
   };
 

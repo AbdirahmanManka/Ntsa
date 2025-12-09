@@ -37,13 +37,13 @@ const ChatWidget: React.FC = () => {
     }));
 
     try {
-      const responseText = await chatWithInstructor(userMsg.text, history);
-      const botMsg: ChatMessage = { role: 'model', text: responseText, timestamp: Date.now() };
+    const responseText = await chatWithInstructor(userMsg.text, history);
+    const botMsg: ChatMessage = { role: 'model', text: responseText, timestamp: Date.now() };
       setMessages((prev) => [...prev, botMsg]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unable to reach instructor');
     } finally {
-      setIsLoading(false);
+    setIsLoading(false);
     }
   };
 
@@ -85,10 +85,10 @@ const ChatWidget: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-5 sm:p-6 bg-gray-50 scrollbar-hide space-y-4">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div
+                <div 
                   className={`max-w-[85%] md:max-w-[80%] p-3 rounded-2xl text-sm ${
-                    msg.role === 'user'
-                      ? 'bg-primary text-white rounded-br-none'
+                    msg.role === 'user' 
+                      ? 'bg-primary text-white rounded-br-none' 
                       : 'bg-white text-slate-700 shadow-sm border border-gray-100 rounded-bl-none'
                   }`}
                 >
@@ -123,7 +123,7 @@ const ChatWidget: React.FC = () => {
                 placeholder="Ask about traffic rules..."
                 className="w-full bg-gray-100 text-sm rounded-full pl-4 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 transition"
               />
-              <button
+              <button 
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
                 className="absolute right-2 p-1.5 bg-primary text-white rounded-full hover:bg-primary-hover disabled:opacity-50 disabled:cursor-not-allowed transition"
@@ -133,7 +133,7 @@ const ChatWidget: React.FC = () => {
               </button>
             </div>
             <div className="text-center mt-2">
-              <span className="text-[10px] text-gray-400">AI can make mistakes. Verify with NTSA handbook.</span>
+                <span className="text-[10px] text-gray-400">AI can make mistakes. Verify with NTSA handbook.</span>
             </div>
           </div>
         </div>

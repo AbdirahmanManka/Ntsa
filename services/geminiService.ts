@@ -30,7 +30,7 @@ export const generateTopicContent = async (topicTitle: string): Promise<string> 
   const data = await fetchJson<TopicContentResponse>('/api/generateTopic', {
     method: 'POST',
     body: JSON.stringify({ topicTitle }),
-  });
+    });
   return data.content;
 };
 
@@ -60,6 +60,6 @@ export const searchTopics = async (query: string): Promise<string> => {
   const data = await fetchJson<SearchResponse>('/api/search', {
     method: 'POST',
     body: JSON.stringify({ query }),
-  });
+    });
   return data.results;
 };
